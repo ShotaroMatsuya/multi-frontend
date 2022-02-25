@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  auth:
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    ports:
+      - '80/8080'
+    volumes:
+      - ./auth:/app
+      - /app/node_modules
+  container:
+    build:
+      context: ./container
+      dockerfile: Dockerfile
+    ports:
+      - '80/8080'
+    volumes:
+      - ./container:/app
+      - /app/node_modules
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    ports:
+      - '80/8080'
+    volumes:
+      - ./dashboard:/app
+      - /app/node_modules
+  marketing:
+    build:
+      context: ./marketing
+      dockerfile: Dockerfile
+    ports:
+      - '80/8080'
+    volumes:
+      - ./marketing:/app
+      - /app/node_modules
