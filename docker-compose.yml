@@ -9,6 +9,8 @@ services:
     volumes:
       - ./marketing:/app
       - /app/node_modules
+    entrypoint: ["npm", "run", "build"]
+
   container:
     build:
       context: ./container
