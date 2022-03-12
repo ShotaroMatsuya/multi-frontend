@@ -1,4 +1,4 @@
-name: deploy-container
+name: deploy-auth
 
 on: 
   workflow_dispatch:
@@ -6,15 +6,15 @@ on:
     branches:
       - main
     paths:
-      - 'container/**'
+      - 'auth/**'
 
 defaults:
   run:
-    working-directory: container
+    working-directory: auth
 
 jobs:
   build:
-    name: Build Container app
+    name: Build Auth app
     runs-on: ubuntu-latest
 
     steps:
@@ -24,8 +24,6 @@ jobs:
         run: npm install
       - name: Build project
         run: npm run build
-        env:
-          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -35,11 +33,11 @@ jobs:
           aws-region: ap-northeast-1
       
       - name: Upload dist to s3 bucket
-        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
+        run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/auth/latest
       - name: Create Invalidation 
-        run: aws cloudfront create-invalidation --distribution-id  ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/container/latest/index.html"
+        run: aws cloudfront create-invalidation --distribution-id  ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/auth/latest/remoteEntry.js"
 
-          # TODO: slack integration
+        # TODO: slack integration
         # Start a Slack workflow using a webhook trigger
       # https://github.com/slackapi/slack-github-action
       - name: Send GitHub Action trigger data to Slack workflow
