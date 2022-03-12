@@ -21,15 +21,15 @@ services:
       - ./container:/app
       - /app/node_modules
     # entrypoint: ["npm", "run", "build"]
-  # auth:
-  #   build:
-  #     context: ./auth
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - '84:8080'
-  #   volumes:
-  #     - ./auth:/app
-  #     - /app/node_modules
+  auth:
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    ports:
+      - '82:8082'
+    volumes:
+      - ./auth:/app
+      - /app/node_modules
 
   # dashboard:
   #   build:
