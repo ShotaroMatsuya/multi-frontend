@@ -9,7 +9,7 @@ services:
     volumes:
       - ./marketing:/app
       - /app/node_modules
-    entrypoint: ["npm", "run", "build"]
+    # entrypoint: ["npm", "run", "build"]
 
   container:
     build:
@@ -20,7 +20,7 @@ services:
     volumes:
       - ./container:/app
       - /app/node_modules
-    entrypoint: ["npm", "run", "build"]
+    # entrypoint: ["npm", "run", "build"]
   # auth:
   #   build:
   #     context: ./auth
