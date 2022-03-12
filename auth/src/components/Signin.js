@@ -25,7 +25,7 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   '@global': {
     a: {
       textDecoration: 'none',
@@ -63,7 +63,7 @@ export default function SignIn({ onSignIn }) {
           Sign in
         </Typography>
         <form
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={e => e.preventDefault()}
           className={classes.form}
           noValidate
         >
