@@ -10,6 +10,8 @@ export default () => {
 
   useEffect(() => {
     const { onParentNavigate } = mount(ref.current, {
+      // containerの現在のブラウザーヒストリーをmarketingのメモリヒストリーの初期値として渡す必要がある
+      initialPath: history.location.pathname,
       // Marketingのリンクを押下したときに実行される
       // Marketing内のmemory historyを更新したのち、(勝手にupdateしてくれる)
       // onNavigateを実行して、containerに現在のパスが変わったことを伝える

@@ -5,8 +5,12 @@ import App from './App';
 
 // Mount fn to start up the app
 
-const mount = (el, { onNavigate, defaultHistory }) => {
-  const history = defaultHistory || createMemoryHistory();
+const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+  const history =
+    defaultHistory ||
+    createMemoryHistory({
+      initialEntries: [initialPath],
+    });
   // we then create a memory history object and we tell the memory history object that whenever the URL changes, whenever the path changes , we wanted to automatically call the onNavigate func.
   if (onNavigate) {
     // only run this from container app (Not Development)
