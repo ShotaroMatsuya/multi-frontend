@@ -5,6 +5,9 @@ const packageJson = require('../package.json');
 
 const devConfig = {
   mode: 'development',
+  output: {
+    publicPath: 'http://localhost:80/',
+  },
   devServer: {
     port: 8080,
     host: '0.0.0.0',
@@ -17,6 +20,7 @@ const devConfig = {
       name: 'container',
       remotes: {
         marketing: 'marketing@http://localhost:81/remoteEntry.js',
+        auth: 'auth@http://localhost:82/remoteEntry.js',
       },
       shared: packageJson.dependencies,
     }),
