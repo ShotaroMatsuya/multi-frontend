@@ -43,6 +43,7 @@ jobs:
       - name: Send GitHub Action trigger data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.16.0
+        with:
           payload: |
             {
               "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
@@ -50,6 +51,7 @@ jobs:
                 {
                   "type": "section",
                   "text": {
+                    "type": "mrkdwn",
                     "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
                   }
                 },
@@ -70,6 +72,7 @@ jobs:
       - name: Notify slack when job failed
         if: ${{ failure() }}
         uses: slackapi/slack-github-action@v1.16.0
+        with:
           payload: |
             {
               "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
@@ -77,6 +80,7 @@ jobs:
                 {
                   "type": "section",
                   "text": {
+                    "type": "mrkdwn",
                     "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
                   }
                 },
