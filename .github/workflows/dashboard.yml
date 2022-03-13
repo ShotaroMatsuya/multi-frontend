@@ -41,8 +41,8 @@ jobs:
         # Start a Slack workflow using a webhook trigger
       # https://github.com/slackapi/slack-github-action
       - name: Send GitHub Action trigger data to Slack workflow
+        id: slack
         uses: slackapi/slack-github-action@v1.16.0
-        with:
           payload: |
             {
               "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
@@ -50,7 +50,6 @@ jobs:
                 {
                   "type": "section",
                   "text": {
-                    "type": "mrkdwn",
                     "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
                   }
                 },
@@ -70,9 +69,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
       - name: Notify slack when job failed
         if: ${{ failure() }}
-        id: slack
         uses: slackapi/slack-github-action@v1.16.0
-        with:
           payload: |
             {
               "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
@@ -80,7 +77,6 @@ jobs:
                 {
                   "type": "section",
                   "text": {
-                    "type": "mrkdwn",
                     "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
                   }
                 },
