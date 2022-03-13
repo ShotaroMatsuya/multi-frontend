@@ -87,7 +87,7 @@ export default function Header({ isSignedIn, onSignOut }) {
               color="inherit"
               noWrap
               component={RouterLink}
-              to="/dashbord"
+              to="/dashboard"
             >
               Dashboard
             </Typography>
